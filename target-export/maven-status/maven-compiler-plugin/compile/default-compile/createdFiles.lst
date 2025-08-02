@@ -1,0 +1,12 @@
+teste/evento/petrobras/domain/exception/DadosInvalidosException.class
+teste/evento/petrobras/domain/service/EventoService.class
+teste/evento/petrobras/infrastructure/repository/EventoRepository.class
+teste/evento/petrobras/adapter/controller/EventosController.class
+teste/evento/petrobras/infrastructure/listener/execption/GlobalExceptionHandler.class
+teste/evento/petrobras/domain/build/EventoPostBuilder.class
+teste/evento/petrobras/domain/entity/Evento.class
+teste/evento/petrobras/presentation/dto/evento/EventoPostDTO$EventoPostDTOBuilder.class
+teste/evento/petrobras/presentation/dto/evento/EventoPostDTO.class
+teste/evento/petrobras/PetrobrasApplication.class
+teste/evento/petrobras/domain/entity/Evento$EventoBuilder.class
+teste/evento/petrobras/infrastructure/security/xss/Sanitizer.class

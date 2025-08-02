@@ -1,0 +1,44 @@
+networks:
+  petrobras-net:
+    driver: bridge
+
+volumes:
+  postgres-data:
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: petrobras-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: petrobras
+      POSTGRES_USER: ROOT
+      POSTGRES_PASSWORD: ROOT
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - petrobras-net
+
+  app:
+    container_name: petrobras
+    build:
+      context: .
+      dockerfile: devops/docker/java/Dockerfile
+    volumes:
+      - .:/home/petrobras:rw
+      - ./target-export:/export:rw   # volume para exportar target sem conflito
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - DEBUG=true
+      - PORT_DEBUG=5005
+    ports:
+      - "8080:8080"
+      - "8000:8000"
+      - "5005:5005"
+    depends_on:
+      - postgres
+    networks:
+      - petrobras-net
+    command: sh -c 'while ! nc -z postgres 5432; do sleep 2; done; sh /entrypoint.sh'
