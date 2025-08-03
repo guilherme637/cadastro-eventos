@@ -28,7 +28,7 @@ services:
       dockerfile: devops/docker/java/Dockerfile
     volumes:
       - .:/home/petrobras:rw
-      - ./target-export:/export:rw   # volume para exportar target sem conflito
+      - ./target-export:/export:rw
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - DEBUG=true
